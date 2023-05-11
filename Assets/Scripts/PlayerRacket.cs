@@ -22,10 +22,12 @@ public class PlayerRacket : MonoBehaviour
     public bool isRightSide = false;
     public bool isUpperSide = false;
     public bool isBottomSide = false;
-    
+
+    public int flipDegrees = 0;
+    public bool racketBool;
     public GameObject racket;
     private Rigidbody racketRb;
-    
+
     public float distance = 2.5f;
     void Start()
     {
@@ -125,25 +127,24 @@ public class PlayerRacket : MonoBehaviour
         
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(mousePositionTracker.position.x, mousePositionTracker.position.y, distance));
         Vector3 direction = (racket.transform.position - mousePos);
-
-        if (leftHalfMousePosX > 1.5f && rightHalfMousePosX > 1.5f && upperHalfMousePosY > 1.5f && bottomHalfMousePosY > 1.5f)
-        { 
-            Quaternion racketRotating = Quaternion.FromToRotation(Vector3.forward, -direction);
-            racketRb.MoveRotation(racketRotating);
-        }
-        else
-        {
-            Quaternion racketRotating = Quaternion.LookRotation(-direction, Vector3.forward);
-            racketRb.MoveRotation(racketRotating);
-        }
-
-
-
         
+        Quaternion racketRotating = Quaternion.FromToRotation(Vector3.forward, -direction) * Quaternion.Euler(0, 0, flipDegrees);
+        racketRb.MoveRotation(racketRotating);
         
-
         Debug.Log(leftHalfMousePosX + "    " + rightHalfMousePosX + "    " + upperHalfMousePosY + "    " + bottomHalfMousePosY);
     }
 
-    
+    public void flipRacket()
+    {
+        if (racketBool == false)
+        {
+            flipDegrees = 90;
+            racketBool = true;
+        }
+        else
+        {
+            flipDegrees = 0;
+            racketBool = false;
+        }
+    }
 }
