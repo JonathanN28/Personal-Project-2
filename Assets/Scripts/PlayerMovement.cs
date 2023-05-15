@@ -6,12 +6,17 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController cController;
-    public float speed = 5f;
-
-    private PlayerRacket playerRacket;
+    [Header("Get")]
     public GameObject racket;
     private RacketFollowPlayer racketFollowPlayer;
+    private PlayerRacket playerRacket;
+    private CharacterController cController;
+    
+    [Header("Set")]
+    public float speed = 5f;
+
+    
+    
     void Start()
     {
         cController = GetComponent<CharacterController>();

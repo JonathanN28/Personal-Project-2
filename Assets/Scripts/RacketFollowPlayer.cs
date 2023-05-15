@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class RacketFollowPlayer : MonoBehaviour
 {
+    [Header("Get")]
     public Transform playerHead;
     private Vector3 zeroVector = Vector3.zero;
-    public Vector3 offset;
     private Rigidbody rb;
     private Vector3 offsetOrigin;
-
+    
+    [Header("Set")]
+    public Vector3 offset;
     private float timeSpeed = 0.1f;
     // Start is called before the first frame update
     void Start()

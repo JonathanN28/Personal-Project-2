@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+    [Header("Get")]
     public Transform playerHead;
     public GameObject mainCamera;
     
+    [Header("Set")]
     public Vector3 cameraOffset;
     void Start()
     {

@@ -10,10 +10,17 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PlayerRacket : MonoBehaviour
 {
+    [Header("Get")]
     public RectTransform mousePositionTracker;
-    
     public Camera cam;
-    private float halfScreen;
+    public GameObject racket;
+    private Rigidbody racketRb;
+    
+    [Header("Set")]
+    public int flipDegrees = 0;
+    
+    [Header("Debug")]
+    
     public float leftHalfMousePosX;
     public float rightHalfMousePosX;
     public float upperHalfMousePosY;
@@ -22,13 +29,9 @@ public class PlayerRacket : MonoBehaviour
     public bool isRightSide = false;
     public bool isUpperSide = false;
     public bool isBottomSide = false;
-
-    public int flipDegrees = 0;
     public bool racketBool;
-    public GameObject racket;
-    private Rigidbody racketRb;
-
     public float distance = 2.5f;
+    private float halfScreen;
     void Start()
     {
         Debug.Log(Screen.width + " " + Screen.height);

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class TrackMousePosition : MonoBehaviour
 {
+    [Header("Get")]
     public TextMeshProUGUI mousePositionText;
     void Update()
     {
