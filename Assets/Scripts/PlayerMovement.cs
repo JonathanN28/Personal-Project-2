@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
         playerRacket = GetComponent<PlayerRacket>();
         racketFollowPlayer = racket.GetComponent<RacketFollowPlayer>();
     }
+
     void Update()
     {
         Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -43,6 +44,5 @@ public class PlayerMovement : MonoBehaviour
             racketFollowPlayer.RetractRacket();
         }
     }
-
 
 }
