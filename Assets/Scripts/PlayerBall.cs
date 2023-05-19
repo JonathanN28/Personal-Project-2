@@ -17,6 +17,8 @@ public class PlayerBall : MonoBehaviour
     public float playerScore = 0f;
     public float enemyScore = 0f;
     public Vector3 serveOffset;
+    public float fastBallDrag = 0.4f;
+    public float slowBallDrag = 0.1f;
 
     public float serveRepeatDelay = 1f;
     void Start()
@@ -26,6 +28,15 @@ public class PlayerBall : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(ballRb.velocity.magnitude);
+        if (ballRb.velocity.magnitude > 4)
+        {
+            ballRb.drag = fastBallDrag;
+        }
+        else
+        {
+            ballRb.drag = slowBallDrag;
+        }
         ballRb.velocity = Vector3.ClampMagnitude(ballRb.velocity, maxSpeed);
         if (Input.GetKeyDown(KeyCode.R))
         {
