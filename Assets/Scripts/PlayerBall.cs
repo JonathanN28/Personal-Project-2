@@ -56,6 +56,15 @@ public class PlayerBall : MonoBehaviour
             {
                 enemyWin();
             }
+
+            if (playerScore == 11f)
+            {
+                
+            }
+            else if (enemyScore == 11f)
+            {
+                
+            }
         }
     }
 

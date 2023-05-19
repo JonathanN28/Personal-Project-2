@@ -12,9 +12,9 @@ public class TrackMousePosition : MonoBehaviour
     }
     private void Track()
     {
-        if (Input.mousePosition.x > 0 && Input.mousePosition.x < Screen.width)
+        if (Input.mousePosition.x > -1 && Input.mousePosition.x < Screen.width + 1)
         {
-            if (Input.mousePosition.y > 0 && Input.mousePosition.y < Screen.height)
+            if (Input.mousePosition.y > -1 && Input.mousePosition.y < Screen.height + 1)
             {
                 transform.position = Input.mousePosition;
             }

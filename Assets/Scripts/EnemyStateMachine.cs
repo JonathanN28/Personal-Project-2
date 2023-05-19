@@ -44,7 +44,7 @@ public class EnemyStateMachine
     {
         stage = EVENT.EXIT;
     }
-    public EnemyStateMachine State()
+    public EnemyStateMachine Runtime()
     {
         if (stage == EVENT.ENTER)
         {
