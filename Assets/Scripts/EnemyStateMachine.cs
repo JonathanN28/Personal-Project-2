@@ -76,7 +76,7 @@ public class Idle : EnemyStateMachine
     }
     public override void StageEnter()
     {
-        
+        npcAnim.SetTrigger("idle");
     }
     public override void StageUpdate()
     {
