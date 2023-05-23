@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
@@ -35,9 +36,13 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRacket.flipRacket();
         }
+        
         else if (Input.GetMouseButton(0))
         {
-            racketFollowPlayer.ExtendRacket();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                racketFollowPlayer.ExtendRacket();
+            }
         }
         else if (Input.GetMouseButton(1))
         {
