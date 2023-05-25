@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 public class EnemyStateMachine
@@ -70,21 +71,34 @@ public class EnemyStateMachine
 
 public class Idle : EnemyStateMachine
 {
+    private int currentWaypoint = 0;
     public Idle(GameObject _npc, NavMeshAgent _agent, Animator _npcAnim, Transform _player) : base(_npc, _agent, _npcAnim, _player)
     {
-        
+        name = STATE.IDLE;
     }
     public override void StageEnter()
     {
-        npcAnim.SetTrigger("idle");
+        npcAnim.SetTrigger("enemyIdle");
+        if (!agent.hasPath)
+        {
+            agent.SetDestination(WaypointsSingleton.Singleton.IdleWaypoints[currentWaypoint].transform.position);
+        }
+        base.StageEnter();
     }
     public override void StageUpdate()
     {
-        
+        if (agent.remainingDistance < 1f)
+        {
+            if (WaypointsSingleton.Singleton.IdleWaypoints.Count > currentWaypoint)
+            {
+                currentWaypoint++;
+            }
+        }
     }
     public override void StageExit()
     {
-        
+        npcAnim.ResetTrigger("enemyIdle");
+        base.StageExit();
     }
 }
 
@@ -92,11 +106,13 @@ public class Attack : EnemyStateMachine
 {
     public Attack(GameObject _npc, NavMeshAgent _agent, Animator _npcAnim, Transform _player) : base(_npc, _agent, _npcAnim, _player)
     {
+        name = STATE.ATTACK;
         
     }
     public override void StageEnter()
     {
-        
+        npcAnim.SetTrigger("enemyHit");
+        base.StageEnter();
     }
     public override void StageUpdate()
     {
@@ -104,7 +120,8 @@ public class Attack : EnemyStateMachine
     }
     public override void StageExit()
     {
-        
+        npcAnim.ResetTrigger("enemyHit");
+        base.StageExit();
     }
 }
 

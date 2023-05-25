@@ -28,7 +28,7 @@ public class PlayerBall : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(ballRb.velocity.magnitude);
+        // Debug.Log(ballRb.velocity.magnitude);
         if (ballRb.velocity.magnitude > 4)
         {
             ballRb.drag = fastBallDrag;

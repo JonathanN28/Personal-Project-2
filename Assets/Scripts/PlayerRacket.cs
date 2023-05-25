@@ -134,7 +134,7 @@ public class PlayerRacket : MonoBehaviour
         Quaternion racketRotating = Quaternion.FromToRotation(Vector3.forward, -direction) * Quaternion.Euler(0, 0, flipDegrees);
         racketRb.MoveRotation(racketRotating);
         
-        Debug.Log(leftHalfMousePosX + "    " + rightHalfMousePosX + "    " + upperHalfMousePosY + "    " + bottomHalfMousePosY);
+        // Debug.Log(leftHalfMousePosX + "    " + rightHalfMousePosX + "    " + upperHalfMousePosY + "    " + bottomHalfMousePosY);
     }
 
     public void flipRacket()
