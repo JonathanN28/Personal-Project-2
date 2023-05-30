@@ -11,13 +11,13 @@ public class AI : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    public Transform player;
+    public Transform playerBall;
     // Start is called before the first frame update
     void Start()
     {
         npcAnim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        enemyStateMachine = new Idle(gameObject, agent, npcAnim, player);
+        enemyStateMachine = new Idle(gameObject, agent, npcAnim, playerBall);
     }
 
     // Update is called once per frame

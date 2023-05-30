@@ -27,6 +27,7 @@ public class Overseer : MonoBehaviour
         if (hasFocus)
         {
             Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
         }
     }
 }

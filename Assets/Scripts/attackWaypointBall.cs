@@ -7,7 +7,6 @@ public class attackWaypointBall : MonoBehaviour
 {
     public GameObject playerBall;
     public Vector3 offset;
-
     public float speedMultiplier;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +19,9 @@ public class attackWaypointBall : MonoBehaviour
     {
         if (playerBall.transform.position.z > 2)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(playerBall.transform.position.x, transform.position.y, playerBall.transform.position.z) + offset, Time.deltaTime * speedMultiplier);
+            //transform.position = Vector3.Lerp(transform.position, new Vector3(playerBall.transform.position.x + offset.x, transform.position.y, playerBall.transform.position.z + offset.z), Time.deltaTime * speedMultiplier);
+            transform.position = new Vector3(playerBall.transform.position.x + offset.x, transform.position.y,
+                playerBall.transform.position.z + offset.z);
         }
         else
         {
