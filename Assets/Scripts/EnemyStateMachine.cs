@@ -60,7 +60,6 @@ public class EnemyStateMachine
             StageExit();
             return nextState;
         }
-
         return this;
     }
 
@@ -88,6 +87,7 @@ public class Idle : EnemyStateMachine
     public override void StageEnter()
     {
         npcAnim.SetTrigger("enemyIdle");
+        agent.speed = 3.5f;
         if (!agent.hasPath)
         {
             agent.SetDestination(WaypointsSingleton.Singleton.IdleWaypoints[currentWaypoint].transform.position);
@@ -122,6 +122,7 @@ public class Attack : EnemyStateMachine
 {
 
     private int currentWaypoint = 0;
+    private EnemyRacket enemyRacket;
     public Attack(GameObject _npc, NavMeshAgent _agent, Animator _npcAnim, Transform _playerBall) : base(_npc, _agent, _npcAnim, _playerBall)
     {
         name = STATE.ATTACK;
@@ -129,6 +130,8 @@ public class Attack : EnemyStateMachine
     }
     public override void StageEnter()
     {
+        enemyRacket = GameObject.FindGameObjectWithTag("enemyRacket").GetComponent<EnemyRacket>();
+        agent.speed = 10f;
         if (agent.hasPath)
         {
             agent.ResetPath();
@@ -138,12 +141,27 @@ public class Attack : EnemyStateMachine
     }
     public override void StageUpdate()
     {
-        Debug.Log(agent.destination);
+        agent.SetDestination(WaypointsSingleton.Singleton.AttackWaypoints[currentWaypoint].transform.position);
+        if (agent.remainingDistance < 1f)
+        {
+            npcAnim.SetTrigger("enemyHit");
+        }
+        else if (enemyRacket.hit == true)
+        {
+            if (playerBall.transform.position.z < 2f || playerBall.transform.position.y < -1f)
+            {
+                Debug.Log("IDLE");
+                nextState = new Idle(npc, agent, npcAnim, playerBall);
+                base.StageExit();
+            }
+        }
+
     }
     public override void StageExit()
     {
+        npcAnim.ResetTrigger("enemyHit");
         base.StageExit();
     }
-    
+
 }
 
