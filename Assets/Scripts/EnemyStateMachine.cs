@@ -142,18 +142,16 @@ public class Attack : EnemyStateMachine
     public override void StageUpdate()
     {
         agent.SetDestination(WaypointsSingleton.Singleton.AttackWaypoints[currentWaypoint].transform.position);
-        if (agent.remainingDistance < 1f)
+        if (agent.remainingDistance < 5f)
         {
             npcAnim.SetTrigger("enemyHit");
         }
-        else if (enemyRacket.hit == true)
+        else if (playerBall.transform.position.z < 2f || playerBall.transform.position.y < -1f)
         {
-            if (playerBall.transform.position.z < 2f || playerBall.transform.position.y < -1f)
-            {
-                Debug.Log("IDLE");
-                nextState = new Idle(npc, agent, npcAnim, playerBall);
-                base.StageExit();
-            }
+            Debug.Log("IDLE");
+            nextState = new Idle(npc, agent, npcAnim, playerBall);
+            base.StageExit();
+            
         }
 
     }

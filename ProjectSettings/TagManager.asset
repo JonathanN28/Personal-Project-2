@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - idleWaypoint
   - attackWaypoint
+  - Ball
+  - enemyRacket
   layers:
   - Default
   - TransparentFX

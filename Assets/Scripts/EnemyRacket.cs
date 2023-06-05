@@ -6,7 +6,9 @@ using UnityEngine;
 public class EnemyRacket : MonoBehaviour
 {
     public GameObject playerBall;
+    public GameObject enemyTarget;
     public bool hit;
+    public Vector3 trajectory;
     private Rigidbody ballRb;
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,12 @@ public class EnemyRacket : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         if (other.gameObject.CompareTag("Ball"))
         {
             hit = true;
+            
         }
     }
 
@@ -36,9 +39,8 @@ public class EnemyRacket : MonoBehaviour
         }
     }
 
-    private void Projectory()
+    private void CalculateTrajectory()
     {
-        
+        Vector3 distance = transform.position - enemyTarget.transform.position;
     }
-
 }
