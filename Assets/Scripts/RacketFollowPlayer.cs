@@ -13,6 +13,7 @@ public class RacketFollowPlayer : MonoBehaviour
     [Header("Set")]
     public Vector3 offset;
     private float timeSpeed = 0.1f;
+    public float extendDistance = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +37,8 @@ public class RacketFollowPlayer : MonoBehaviour
 
     public void ExtendRacket()
     {
-        timeSpeed = 1f;
-        offset = new Vector3(0, 0, 10);
+        timeSpeed = 0.25f;
+        offset = new Vector3(offset.x, offset.y, extendDistance);
         
     }
 

@@ -87,6 +87,7 @@ public class Idle : EnemyStateMachine
     {
         npcAnim.SetTrigger("enemyIdle");
         agent.speed = 3.5f;
+        agent.acceleration = 8f;
         if (!agent.hasPath)
         {
             agent.SetDestination(WaypointsSingleton.Singleton.IdleWaypoints[currentWaypoint].transform.position);
@@ -131,21 +132,19 @@ public class Attack : EnemyStateMachine
     {
         enemyRacket = GameObject.FindGameObjectWithTag("enemyRacket").GetComponent<EnemyRacket>();
         agent.speed = 10f;
+        agent.acceleration = 100f;
         if (agent.hasPath)
         {
             agent.ResetPath();
             agent.SetDestination(WaypointsSingleton.Singleton.AttackWaypoints[currentWaypoint].transform.position);
         }
+        npcAnim.SetTrigger("enemyHit");
         base.StageEnter();
     }
     public override void StageUpdate()
     {
         agent.SetDestination(WaypointsSingleton.Singleton.AttackWaypoints[currentWaypoint].transform.position);
-        if (agent.remainingDistance < 5f)
-        {
-            npcAnim.SetTrigger("enemyHit");
-        }
-        else if (playerBall.transform.position.z < 2f || playerBall.transform.position.y < -1f)
+        if (playerBall.transform.position.z < 2f || playerBall.transform.position.y < -1f)
         {
             Debug.Log("IDLE");
             nextState = new Idle(npc, agent, npcAnim, playerBall);
